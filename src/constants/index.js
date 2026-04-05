@@ -1,33 +1,27 @@
 const flavorlists = [
   {
-    name: "Chocolate Milk",
+    name: "Nuestra oficina",
     color: "brown",
-    rotation: "md:rotate-[-8deg] rotate-0",
+    rotation: "md:rotate-[8deg] rotate-0",
+    image: "/images/fas3.jpg",
   },
   {
-    name: "Stawberry Milk",
+    name: "Concursantes del Hackaitlac",
     color: "red",
     rotation: "md:rotate-[8deg] rotate-0",
+    image: "/images/fas1.jpg",
   },
   {
-    name: "Cookies & Cream",
+    name: "Ganadores del Hackaitlac",
     color: "blue",
-    rotation: "md:rotate-[-8deg] rotate-0",
+    rotation: "md:rotate-[8deg] rotate-0",
+    image: "/images/fas4.jpg",
   },
   {
-    name: "Peanut Butter Chocolate",
+    name: "Checador FASITLAC",
     color: "orange",
     rotation: "md:rotate-[8deg] rotate-0",
-  },
-  {
-    name: "Vanilla Milkshake",
-    color: "white",
-    rotation: "md:rotate-[-8deg] rotate-0",
-  },
-  {
-    name: "Max Chocolate Milk",
-    color: "black",
-    rotation: "md:rotate-[8deg] rotate-0",
+    image: "/images/checador.jpg",
   },
 ];
 

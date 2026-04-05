@@ -1,0 +1,93 @@
+---
+// No props needed
+---
+
+<section class="about-editorial-section w-full relative pb-20 md:pb-32 px-5 md:px-[8vw] flex flex-col gap-12 md:gap-24 overflow-hidden pt-20 bg-white">
+  
+  <!-- Big Header -->
+  <div class="w-full max-w-[90rem] mx-auto pt-10">
+    <p class="text-[10px] md:text-sm font-bold uppercase tracking-widest mb-4 opacity-50">(Acerca de la empresa)</p>
+    <h1 class="text-4xl md:text-[3.5vw] font-sans tracking-tight leading-[1.1] text-main-bg font-medium max-w-5xl">
+      Creamos productos de software de la mas alta calidad y garantizamos seguridad en cada producto.
+    </h1>
+  </div>
+
+  <!-- Content 2 Columns -->
+  <div class="w-full max-w-[90rem] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+    
+    <!-- Image Left -->
+    <div class="w-full md:w-5/12 shrink-0">
+      <div class="w-full aspect-[4/5] overflow-hidden bg-gray-200">
+        <!-- Image placeholder replaced by director portrait -->
+        <img src="/images/director.jpg" alt="Director FASITLAC" class="size-full object-cover" />
+      </div>
+    </div>
+
+    <!-- Text Right -->
+    <div class="w-full md:w-5/12 flex flex-col gap-6 text-sm md:text-base font-paragraph leading-relaxed text-main-bg md:pt-4">
+      <p>
+        En FASITLAC, concebimos el software como el núcleo de cualquier negocio moderno. Cada línea de código y cada infraestructura que diseñamos están meticulosamente enfocadas en maximizar el rendimiento, la escalabilidad y la inquebrantable seguridad de tus sistemas.
+      </p>
+      <p>
+        Nuestra experiencia comprende desde aplicaciones corporativas críticas hasta infraestructuras robustas en la nube. Operamos bajo altos estándares globales, fungiendo no solo como proveedores, sino como aliados estratégicos e integrales de tus equipos.
+      </p>
+      <p>
+        Mantenemos una filosofía agnóstica ante la tecnología: no forzamos lenguajes obsoletos. Por el contrario, desarrollamos e iteramos soluciones a la medida que responden exactamente al modelo de tu negocio y protegen tus bases de datos contra ciberataques modernos.
+      </p>
+      <p>
+        Orgullosamente basados en México, desarrollando excelencia técnica e impactando al mundo con soluciones digitales vanguardistas.
+      </p>
+
+      <div class="mt-6 flex items-center">
+        <!-- Blue button following corporate aesthetic -->
+        <a href="#" class="inline-flex items-center gap-3 bg-light-brown text-white hover:bg-main-bg transition-colors duration-300 rounded-full px-6 py-2.5 font-bold text-sm">
+          <span>Saber más de nosotros</span>
+          <span class="flex items-center justify-center size-6 rounded-full border border-white bg-white/20 text-[10px] leading-none">↗</span>
+        </a>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/all';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Simple elegant fade-ups matching the new style
+  gsap.from('.about-editorial-section h1', {
+    scrollTrigger: {
+      trigger: '.about-editorial-section',
+      start: 'top 80%',
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
+  });
+
+  gsap.from('.about-editorial-section img', {
+    scrollTrigger: {
+      trigger: '.about-editorial-section',
+      start: 'top 60%',
+    },
+    scale: 1.05,
+    opacity: 0,
+    duration: 1.2,
+    ease: 'power2.out'
+  });
+
+  gsap.from('.about-editorial-section p, .about-editorial-section a', {
+    scrollTrigger: {
+      trigger: '.about-editorial-section img',
+      start: 'top 70%',
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: 'power2.out'
+  });
+</script>

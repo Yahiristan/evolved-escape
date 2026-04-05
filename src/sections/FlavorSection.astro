@@ -1,0 +1,110 @@
+---
+---
+
+<section class="screen-gallery relative w-full h-screen overflow-hidden bg-main-bg">
+  
+  <!-- Image Stack -->
+  <div class="gallery-images absolute inset-0 z-0 size-full">
+    {[
+      { src: "/images/fas1.jpg", title: "Logro 1" },
+      { src: "/images/checador.jpg", title: "Logro 2" },
+      { src: "/images/fas3.jpg", title: "Logro 3" },
+      { src: "/images/fas4.jpg", title: "Logro 4" }
+    ].map((img, i) => (
+      <div 
+        class="gallery-slide absolute inset-0 size-full object-cover"
+        style={`z-index: ${i === 0 ? 1 : 0}; clip-path: ${i === 0 ? 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' : 'polygon(0 0, 0 0, 0 100%, 0 100%)'}; visibility: ${i === 0 ? 'inherit' : 'hidden'};`}
+      >
+        <img class="size-full object-cover" src={img.src} alt={img.title} />
+      </div>
+    ))}
+  </div>
+
+  <!-- Thumb Navigation (Left axis) -->
+  <div class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-6">
+    {[
+      "/images/fas1.jpg",
+      "/images/checador.jpg",
+      "/images/fas3.jpg",
+      "/images/fas4.jpg"
+    ].map((src, i) => (
+      <button 
+        class={`gallery-thumb relative size-12 md:size-16 rounded-full overflow-hidden border-[3px] transition-all duration-300 ${i === 0 ? 'border-white scale-110 shadow-[0_0_20px_rgba(255,255,255,0.7)] opacity-100' : 'border-white/30 hover:border-white/70 opacity-50 hover:opacity-100'}`}
+        data-index={i}
+        aria-label={`Visualizar imagen ${i + 1}`}
+      >
+        <img src={src} class="size-full object-cover" alt="" />
+      </button>
+    ))}
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  const slides = document.querySelectorAll('.gallery-slide');
+  const thumbs = document.querySelectorAll('.gallery-thumb');
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  // Add click events to thumbnails
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      const targetIndexStr = thumb.getAttribute('data-index');
+      if (!targetIndexStr) return;
+      const targetIndex = parseInt(targetIndexStr, 10);
+      
+      // Prevent overlapping animations or firing on current active slide
+      if (targetIndex === currentIndex || isAnimating) return;
+      
+      const outgoingSlide = slides[currentIndex];
+      const incomingSlide = slides[targetIndex];
+      const isForward = targetIndex > currentIndex;
+
+      isAnimating = true;
+
+      // --- UI Updates for Thumbs ---
+      thumbs.forEach((t, idx) => {
+        if (idx === targetIndex) {
+          t.classList.remove('border-white/30', 'opacity-50');
+          t.classList.add('border-white', 'scale-110', 'shadow-[0_0_20px_rgba(255,255,255,0.7)]', 'opacity-100');
+        } else {
+          t.classList.add('border-white/30', 'opacity-50');
+          t.classList.remove('border-white', 'scale-110', 'shadow-[0_0_20px_rgba(255,255,255,0.7)]', 'opacity-100');
+        }
+      });
+
+      // --- Ensure layering for wipe effect ---
+      // Incoming slide goes on top of outgoing
+      gsap.set(incomingSlide, { zIndex: 2, visibility: 'inherit' });
+      gsap.set(outgoingSlide, { zIndex: 1 });
+
+      // --- Clip Path sweeps ---
+      // Sweep Left to Right (For backwards: polygon starting fully left)
+      // Sweep Right to Left (For forwards: polygon starting fully right)
+      
+      // Base: (top-left, top-right, bot-right, bot-left)
+      const clipStart = isForward 
+        ? "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)" // right edge
+        : "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)";     // left edge
+
+      const clipEnd = "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"; // Standard full square
+
+      gsap.fromTo(incomingSlide, 
+        { clipPath: clipStart },
+        {
+          clipPath: clipEnd,
+          duration: 1.1,
+          ease: 'power3.inOut',
+          onComplete: () => {
+            // Reset outgoing slide totally after wipe covers it
+            gsap.set(outgoingSlide, { zIndex: 0, visibility: 'hidden', clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" });
+            gsap.set(incomingSlide, { zIndex: 1 }); // lower it to main deck level
+            currentIndex = targetIndex;
+            isAnimating = false;
+          }
+        }
+      );
+    });
+  });
+</script>

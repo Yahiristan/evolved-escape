@@ -1,0 +1,48 @@
+---
+// No props needed
+---
+
+<section class="vd-pin-section" id="vd-pin-outer">
+  <div
+    id="video-box"
+    class="size-full video-box"
+    style="clip-path: circle(6% at 50% 50%);"
+  >
+    <video src="/videos/pin-video.mp4" playsinline muted loop autoplay></video>
+
+    <div class="abs-center md:scale-100 scale-200">
+      <img src="/images/circle-text.svg" alt="" class="spin-circle" />
+      <div class="play-btn">
+        <img src="/images/play.svg" alt="" class="size-[3vw] ml-[.5vw]" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/all';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const videoBox = document.getElementById('video-box');
+
+  if (isMobile) {
+    if (videoBox) videoBox.style.clipPath = 'circle(100% at 50% 50%)';
+  } else {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.vd-pin-section',
+        start: '-15% top',
+        end: '200% top',
+        scrub: 1.5,
+        pin: true,
+      },
+    });
+
+    tl.to('.video-box', {
+      clipPath: 'circle(100% at 50% 50%)',
+      ease: 'power1.inOut',
+    });
+  }
+</script>

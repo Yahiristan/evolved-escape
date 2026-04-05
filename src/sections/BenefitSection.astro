@@ -1,0 +1,47 @@
+---
+---
+
+<section class="benefit-section w-full">
+  <div class="col-center w-full">
+    <p class="text-3xl md:text-5xl text-white font-bold uppercase tracking-wide mb-8 md:mb-16 text-center px-4">
+      Empresas que recomiendan FASITLAC
+    </p>
+
+    <div class="w-full overflow-hidden bg-white py-6 md:py-10 border-y-4 border-black shadow-xl flex">
+      <div class="marquee-track w-max">
+        <!-- Grupo 1 -->
+        <div class="flex items-center gap-16 md:gap-32 px-8 md:px-16 flex-none">
+          <img src="/images/empresas/APP_Caliente_MX.svg.png" alt="Caliente" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/Apple.svg" alt="Apple" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/Captura%20de%20pantalla%202026-04-05%20021255.png" alt="Amazon" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/Google.png" alt="Google" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/Meta.png" alt="Meta" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/microsoft.png" alt="Microsoft" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/nvidia.png" alt="Nvidia" class="h-12 md:h-20 w-auto object-contain" />
+        </div>
+        
+        <!-- Grupo 2 (duplicado para loop infinito fluído) -->
+        <div class="flex items-center gap-16 md:gap-32 px-8 md:px-16 flex-none">
+          <img src="/images/empresas/APP_Caliente_MX.svg.png" alt="Caliente" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/Apple.svg" alt="Apple" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/Captura%20de%20pantalla%202026-04-05%20021255.png" alt="Amazon" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/Google.png" alt="Google" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/Meta.png" alt="Meta" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/microsoft.png" alt="Microsoft" class="h-12 md:h-20 w-auto object-contain" />
+          <img src="/images/empresas/nvidia.png" alt="Nvidia" class="h-12 md:h-20 w-auto object-contain" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .marquee-track {
+      display: flex;
+      animation: marquee 25s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+</section>

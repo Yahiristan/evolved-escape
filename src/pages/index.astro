@@ -1,5 +1,13 @@
 ---
-import App from '../App.jsx';
+import NavBar from '../components/NavBar.astro';
+import HeroSection from '../sections/HeroSection.astro';
+import MessageSection from '../sections/MessageSection.astro';
+import FlavorSection from '../sections/FlavorSection.astro';
+import NutritionSection from '../sections/NutritionSection.astro';
+import BenefitSection from '../sections/BenefitSection.astro';
+import TestimonialSection from '../sections/TestimonialSection.astro';
+import ActionSection from '../sections/ActionSection.astro';
+import FooterSection from '../sections/FooterSection.astro';
 import '../styles/index.css';
 ---
 
@@ -12,6 +20,31 @@ import '../styles/index.css';
     <title>SPYLT – Freaking Delicious</title>
   </head>
   <body>
-    <App client:only="react" />
+    <NavBar />
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <HeroSection />
+        <MessageSection />
+        <TestimonialSection />
+        <FlavorSection />
+        <NutritionSection />
+        <div>
+          <BenefitSection />
+        </div>
+        <ActionSection />
+        <FooterSection />
+      </div>
+    </div>
   </body>
 </html>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger, ScrollSmoother } from 'gsap/all';
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+  ScrollSmoother.create({
+    smooth: 3,
+    effects: true,
+  });
+</script>

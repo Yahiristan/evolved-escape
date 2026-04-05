@@ -1,0 +1,102 @@
+---
+// No props needed
+---
+
+<section class="message-content bg-main-bg w-full">
+  <div class="container mx-auto flex-center py-28 relative">
+    <div class="w-full h-full">
+      <div class="msg-wrapper" style="line-height: 1; display: flex; flex-direction: column; gap: 0;">
+        <h1 class="first-message" style="margin: 0;">Somos una empresa de</h1>
+
+        <div
+          style="clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); position: relative; z-index: 10; display: inline-block; border: none;"
+          class="msg-text-scroll"
+        >
+          <div class="md:pb-5 pb-3 px-5" style="background-color: #3B82F6;">
+            <h2 style="color: #ffffff;">Software</h2>
+          </div>
+        </div>
+
+        <h1 class="second-message">
+          del itlac
+        </h1>
+      </div>
+
+
+      <div class="flex-center md:mt-20 mt-10">
+        <div class="max-w-md px-10 flex-center overflow-hidden">
+          <p>
+            Te invitamos a ver algunos de nuestros momentos que hemos vivido a lo largo de la creación de este proyecto
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { SplitText, ScrollTrigger } from 'gsap/all';
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.fonts.ready.then(() => {
+    const firstMsgSplit = SplitText.create('.first-message', { type: 'words' });
+    const secMsgSplit = SplitText.create('.second-message', { type: 'words' });
+    const paragraphSplit = SplitText.create('.message-content p', {
+      type: 'words, lines',
+      linesClass: 'paragraph-line',
+    });
+
+    gsap.to(firstMsgSplit.words, {
+      color: '#ffffff',
+      ease: 'power1.in',
+      stagger: 1,
+      scrollTrigger: {
+        trigger: '.message-content',
+        start: 'top center',
+        end: '30% center',
+        scrub: true,
+      },
+    });
+
+    gsap.to(secMsgSplit.words, {
+      color: '#ffffff',
+      ease: 'power1.in',
+      stagger: 1,
+      scrollTrigger: {
+        trigger: '.second-message',
+        start: 'top center',
+        end: 'bottom center',
+        scrub: true,
+      },
+    });
+
+    const revealTl = gsap.timeline({
+      delay: 1,
+      scrollTrigger: {
+        trigger: '.msg-text-scroll',
+        start: 'top 60%',
+      },
+    });
+
+    revealTl.to('.msg-text-scroll', {
+      duration: 1,
+      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+      ease: 'circ.inOut',
+    });
+
+    const paragraphTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.message-content p',
+        start: 'top center',
+      },
+    });
+
+    paragraphTl.from(paragraphSplit.words, {
+      yPercent: 300,
+      ease: 'power1.inOut',
+      duration: 1,
+      stagger: 0.01,
+    });
+  });
+</script>

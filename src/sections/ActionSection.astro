@@ -1,0 +1,72 @@
+---
+// ActionSection.astro
+---
+
+<section class="action-section relative w-full bg-white py-24 md:py-40 px-5 md:px-[10vw] flex items-center justify-start overflow-hidden border-t border-gray-100">
+  
+  <!-- Rightside abstract geometry wireframe -->
+  <div class="absolute right-0 top-0 w-1/3 h-full pointer-events-none hidden md:block opacity-20">
+    <svg viewBox="0 0 400 800" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover origin-right scale-125">
+      <path d="M100 200 L300 100 V800 M200 400 L400 300 V800 M300 750 L400 700" stroke="#001f3f" stroke-width="1.5" />
+    </svg>
+  </div>
+
+  <div class="relative z-10 w-full max-w-4xl flex flex-col items-start gap-6 text-main-bg">
+    
+    <div class="flex items-center gap-3 font-bold font-sans tracking-[0.2em] text-xs md:text-sm uppercase opacity-70">
+      <span class="text-[10px]">♦</span>
+      <p>Donde la visión empata con la ejecución</p>
+    </div>
+
+    <h1 class="text-5xl md:text-[5vw] leading-[1.05] tracking-tight font-sans font-medium mt-2">
+      Todo gran software comienza con arquitectura segura
+    </h1>
+
+    <div class="flex flex-col sm:flex-row gap-4 mt-8">
+      <a href="#" class="group flex flex-col justify-center border border-main-bg bg-main-bg text-white hover:bg-white hover:text-main-bg transition-colors duration-300 font-bold text-xs tracking-widest px-8 md:px-10 py-4 uppercase">
+        <div class="flex items-center gap-3">
+          <span class="text-lg leading-none -translate-y-[1px] font-light">↳</span>
+          <span>Productos</span>
+        </div>
+      </a>
+      <a href="#" class="group flex flex-col justify-center border border-transparent hover:border-main-bg/30 text-main-bg transition-colors duration-300 font-bold text-xs tracking-widest px-8 md:px-10 py-4 uppercase">
+        <div class="flex items-center gap-3">
+          <span class="text-lg leading-none -translate-y-[1px] font-light">↳</span>
+          <span>Contactarnos</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/all';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.action-section h1', {
+    scrollTrigger: {
+      trigger: '.action-section',
+      start: 'top 80%',
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
+  });
+
+  gsap.from('.action-section a', {
+    scrollTrigger: {
+      trigger: '.action-section',
+      start: 'top 75%',
+    },
+    y: 20,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 0.8,
+    ease: 'power2.out'
+  });
+</script>

@@ -1,0 +1,56 @@
+---
+---
+
+<section class="team-section relative w-full bg-milk py-20 px-5 md:px-10 min-h-screen flex flex-col items-center justify-center">
+  <div class="mb-12 md:mb-20 text-center">
+    <h1 class="text-main-bg uppercase text-6xl md:text-8xl xl:text-9xl leading-[110%] tracking-tight font-bold">
+      Conoce<br/><span class="text-light-brown">a</span> FASITLAC
+    </h1>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-10 w-full max-w-7xl mx-auto">
+    {[
+      { src: "/images/integrantes/amaya.png", name: "Amaya" },
+      { src: "/images/integrantes/diego.png", name: "Diego" },
+      { src: "/images/integrantes/kevin.png", name: "Kevin" },
+      { src: "/images/integrantes/paul.png", name: "Paul" },
+      { src: "/images/integrantes/soto.png", name: "Soto" },
+      { src: "/images/integrantes/yahir.png", name: "Yahir" }
+    ].map((member, index) => (
+      <div
+        class="team-card relative w-full aspect-[3/4] overflow-hidden rounded-2xl md:rounded-3xl border-4 border-main-bg shadow-2xl bg-main-bg hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,31,63,0.4)] transition-all duration-300"
+      >
+        <img
+          src={member.src}
+          alt={member.name}
+          class="size-full object-cover"
+        />
+        <!-- Nombre Overlay Transparente -->
+        <div class="absolute bottom-0 w-full bg-gradient-to-t from-main-bg/80 to-transparent pt-10 pb-4 text-center">
+          <p class="text-white font-bold tracking-widest uppercase text-xl md:text-3xl drop-shadow-md">
+            {member.name}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/all';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animación de aparición consecutiva al scrollear
+  gsap.from('.team-card', {
+    scrollTrigger: {
+      trigger: '.team-section',
+      start: 'top 75%', // Inicia cuando la sección toca el 75% de la pantalla hacia abajo
+    },
+    y: 80,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15, // Aparición en cadena, 0.15s de diferencia entre cada uno
+    ease: "power2.out"
+  });
+</script>
