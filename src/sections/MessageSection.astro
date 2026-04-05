@@ -53,8 +53,8 @@
       stagger: 1,
       scrollTrigger: {
         trigger: '.message-content',
-        start: 'top center',
-        end: '30% center',
+        start: 'top 85%',
+        end: '20% 60%',
         scrub: true,
       },
     });
@@ -65,24 +65,23 @@
       stagger: 1,
       scrollTrigger: {
         trigger: '.second-message',
-        start: 'top center',
-        end: 'bottom center',
+        start: 'top 85%',
+        end: 'bottom 60%',
         scrub: true,
       },
     });
 
     const revealTl = gsap.timeline({
-      delay: 1,
       scrollTrigger: {
-        trigger: '.msg-text-scroll',
-        start: 'top 60%',
+        trigger: '.first-message',
+        start: 'bottom 75%',
       },
     });
 
     revealTl.to('.msg-text-scroll', {
-      duration: 1,
+      duration: 0.8,
       clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-      ease: 'circ.inOut',
+      ease: 'circ.out',
     });
 
     const paragraphTl = gsap.timeline({
